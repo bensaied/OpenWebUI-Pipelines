@@ -1,6 +1,6 @@
 fastapi==0.111.0
 uvicorn[standard]==0.22.0
-pydantic==2.7.1
+pydantic==2.12.5
 python-multipart==0.0.9
 python-socketio
 grpcio
@@ -14,7 +14,7 @@ aiohttp==3.9.5
 httpx
 
 # AI libraries
-openai
+openai<2.0.0
 anthropic
 google-generativeai
 vertexai
@@ -63,5 +63,14 @@ playwright
 beautifulsoup4
 
 # Llama Index for RAG
-llama-index
+llama-index==0.12.10
+llama-index-core==0.12.10
+llama-index-llms-openai==0.3.13
 llama-index-llms-ollama
+
+# Langchain
+langchain==1.2.0
+langchain-community==0.4.1
+langchain-groq==1.1.1
+pydantic_core==2.41.5
+pydantic_settings==2.12.0
