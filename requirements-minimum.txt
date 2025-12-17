@@ -1,6 +1,6 @@
 fastapi==0.111.0
 uvicorn[standard]==0.22.0
-pydantic==2.7.1
+pydantic==2.12.5
 python-multipart==0.0.9
 python-socketio
 grpcio
@@ -12,4 +12,3 @@ PyJWT[crypto]
 requests==2.32.2
 aiohttp==3.9.5
 httpx
-
