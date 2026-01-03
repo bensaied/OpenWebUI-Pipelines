@@ -1,4 +1,4 @@
-FROM python:3.11-slim-bookworm AS base
+FROM python:3.11-slim-bookworm AS base 
 
 # Use args
 ARG MINIMUM_BUILD
@@ -41,7 +41,6 @@ RUN if [ "$MINIMUM_BUILD" = "true" ]; then \
         uv pip install --system -r requirements.txt --no-cache-dir; \
     fi
 
-
 # Layer on for other components
 FROM base AS app
 
@@ -68,6 +67,18 @@ RUN if [ -n "$PIPELINES_URLS" ] || [ -n "$PIPELINES_REQUIREMENTS_PATH" ]; then \
     echo "Running docker command with PIPELINES_URLS or PIPELINES_REQUIREMENTS_PATH"; \
     ./start.sh --mode setup; \
     fi
+
+# =========================
+# Install Node.js, npm, and npx for MCP with stdio transport
+# =========================
+RUN apt-get update && \
+    apt-get install -y curl gnupg ca-certificates build-essential && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+# Optional: verify Node.js, npm, npx
+RUN node -v && npm -v && npx -v
 
 # Expose the port
 ENV HOST="0.0.0.0"
